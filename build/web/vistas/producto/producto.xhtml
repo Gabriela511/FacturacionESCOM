@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -9,6 +12,108 @@
 
             <ui:define name="content">
                 <h1> Datos de Productos </h1>
+                <p:commandButton value="Nuevo Producto" actionListener="#{productoBean.prepararNuevoProducto()}"
+                                 oncomplete="PF('dialogNuevoProducto').show()"
+                                 update="formNuevoProducto"/>
+                <h:form id="formMostrarProducto">
+                    <p:dataTable id="tablaProducto" paginator="true" paginatorPosition="top"
+                                 var="pro" value="#{productoBean.listaProducto}" emptyMessage="No hay datos disponibles">
+                        <p:column headerText="Codigo Producto">
+                            <h:outputText value="#{pro.codProducto}"/>
+                        </p:column>
+
+                        <p:column headerText="Nombre del Producto">
+                            <h:outputText value="#{pro.nombreProducto} "/>
+                        </p:column>
+
+                        <p:column headerText="Precio">
+                            <h:outputText value="#{pro.precioVenta}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Stock Actual">
+                            <h:outputText value="#{pro.stockActual}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Stock Minimo">
+                            <h:outputText value="#{pro.stockMinimo}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Codigo de Barras">
+                            <h:outputText value="#{pro.codBarra}"/>
+                        </p:column>
+
+                        <p:column headerText="Modificar">
+                            <p:commandButton value="Modificar" oncomplete="PF('dialogModificarProducto').show()"
+                                             update=":formModificarProducto">
+                                <f:setPropertyActionListener target="#{productoBean.producto}" value="#{pro}"/>
+                            </p:commandButton>
+
+                        </p:column>
+
+                        <p:column headerText="Eliminar">
+                            <p:commandButton value="Eliminar" oncomplete="PF('dialogEliminarProducto').show()"
+                                             update=':formEliminarProducto'>
+                                <f:setPropertyActionListener target="#{productoBean.producto}" value="#{pro}"/>
+
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+
+                <h:form id="formNuevoProducto">
+                    <p:dialog id="dlgNuevoProducto" widgetVar="dialogNuevoProducto" resizable="false" showEffect="blind"
+                              hideEffect="clip" modal="true">
+                        <p:panelGrid columns="2" style="margin: 0 auto">
+                            <p:outputLabel value="Nombre Producto"/>
+                            <p:inputText value="#{productoBean.producto.nombreProducto}"/>
+                            <p:outputLabel value="Precio Venta"/>
+                            <p:inputText value="#{productoBean.producto.precioVenta}"/>
+                            <p:outputLabel value="Stock Actual"/>
+                            <p:inputText value="#{productoBean.producto.stockActual}"/>
+                            <p:outputLabel value="Stock Minimo"/>
+                            <p:inputText value="#{productoBean.producto.stockMinimo}"/>
+                            <p:outputLabel value="Codigo de Barras"/>
+                            <p:inputText value="#{productoBean.producto.codBarra}"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Guardar" actionListener="#{productoBean.nuevoProducto()}"
+                                         update=":formMostrarProducto:" oncomplete="PF('dialogNuevoProducto').hide()"/>
+                        <p:commandButton value="Cancelar" oncomplete="PF('dialogNuevoProducto').hide()"/>
+                    </p:dialog>
+                </h:form>
+
+                <h:form id="formModificarProducto">
+                    <p:dialog id="dlgModificarProducto" widgetVar="dialogModificarProducto" resizable="false" showEffect="blind"
+                              hideEffect="clip" modal="true">
+                        <p:panelGrid columns="2" style="margin: 0 auto">
+                            <p:outputLabel value="Nombre Producto"/>
+                            <p:inputText value="#{productoBean.producto.nombreProducto}"/>
+                            <p:outputLabel value="Precio Venta"/>
+                            <p:inputText value="#{productoBean.producto.precioVenta}"/>
+                            <p:outputLabel value="Stock Actual"/>
+                            <p:inputText value="#{productoBean.producto.stockActual}"/>
+                            <p:outputLabel value="Stock Minimo"/>
+                            <p:inputText value="#{productoBean.producto.stockMinimo}"/>
+                            <p:outputLabel value="Codigo de Barras"/>
+                            <p:inputText value="#{productoBean.producto.codBarra}"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Guardar" actionListener="#{productoBean.modificarProducto()}"
+                                         update=":formMostrarProducto:tablaProducto" oncomplete="PF('dialogModificarProducto').hide()"/>
+                        <p:commandButton value="Cancelar" onclick="PF('dialogModificarProducto').hide()"/>
+                    </p:dialog>
+                </h:form>
+
+                <h:form id="formEliminarProducto">
+                    <p:dialog id="dlgEliminarProducto" widgetVar="dialogEliminarProducto" resizable="false" showEffect="shake"
+                              hideEffect="drop" modal="true">
+                        <h:outputText value="¿Seguro que desea eliminar este registro?"/>
+                        <p:commandButton value="Si" actionListener="#{productoBean.eliminarProducto()}"
+                                         update=":formMostrarProducto:tablaProducto" 
+                                         oncomplete="PF('dialogEliminarProducto').hide()"/>
+                        <p:commandButton value="No" onclick="PF('dialogEliminarProducto').hide()"/>
+                    </p:dialog>
+                </h:form>
+
             </ui:define>
 
         </ui:composition>
