@@ -21,46 +21,52 @@
                         <p:column headerText="Codigo">
                             <h:outputText value="#{ven.codVendedor}"/>
                         </p:column>
-                        
+
                         <p:column headerText="Nombre del vendedor">
                             <h:outputText value="#{ven.nombres} #{ven.apellidos}"/>
                         </p:column>
-                        
-                        <p:column headerText="DUI Vededor">
-                            <h:outputText value="#{ven.direccion}"/>
+
+                        <p:column headerText="DUI">
+                            <h:outputText value="#{ven.dui}"/>
                         </p:column>
                         
+                        <p:column headerText="Celular">
+                            <h:outputText value="#{ven.celular}"/>
+                        </p:column>
+
                         <p:column headerText="Direccion">
                             <h:outputText value="#{ven.direccion}"/>
                         </p:column>
-                        
+
                         <p:column headerText="Modificar">
                             <p:commandButton value="Modificar" oncomplete="PF('dialogModificarVendedor').show()"
-                                update=":formModificarVendedor">
+                                             update=":formModificarVendedor">
                                 <f:setPropertyActionListener target="#{vendedorBean.vendedor}" value="#{ven}"/>
                             </p:commandButton>
-                            
+
                         </p:column>
-                        
+
                         <p:column headerText="Eliminar">
                             <p:commandButton value="Eliminar" oncomplete="PF('dialogEliminarVendedor').show()"
                                              update=':formEliminarVendedor'>
                                 <f:setPropertyActionListener target="#{vendedorBean.vendedor}" value="#{ven}"/>
-                                
+
                             </p:commandButton>
                         </p:column>
-                        
+
                     </p:dataTable>
                 </h:form>
-                
+
                 <h:form id="formNuevoVendedor">
                     <p:dialog id="dlgNuevoVendedor" widgetVar="dialogNuevoVendedor" resizable="false" showEffect="blind"
-                        hideEffect="clip" modal="true">
+                              hideEffect="clip" modal="true">
                         <p:panelGrid columns="2" style="margin: 0 auto">
                             <p:outputLabel value="Nombres"/>
                             <p:inputText value="#{vendedorBean.vendedor.nombres}"/>
                             <p:outputLabel value="Apellidos"/>
                             <p:inputText value="#{vendedorBean.vendedor.apellidos}"/>
+                            <p:outputLabel value="DUI"/>
+                            <p:inputText value="#{vendedorBean.vendedor.dui}"/>
                             <p:outputLabel value="Direccion"/>
                             <p:inputText value="#{vendedorBean.vendedor.direccion}"/>
                         </p:panelGrid>
@@ -69,15 +75,19 @@
                         <p:commandButton value="Cancelar" oncomplete="PF('dialogNuevoVendedor').hide()"/>
                     </p:dialog>
                 </h:form>
-                
+
                 <h:form id="formModificarVendedor">
                     <p:dialog id="dlgModificarVendedor" widgetVar="dialogModificarVendedor" resizable="false" showEffect="blind"
-                        hideEffect="clip" modal="true">
+                              hideEffect="clip" modal="true">
                         <p:panelGrid columns="2" style="margin: 0 auto">
                             <p:outputLabel value="Nombres"/>
                             <p:inputText value="#{vendedorBean.vendedor.nombres}"/>
                             <p:outputLabel value="Apellidos"/>
                             <p:inputText value="#{vendedorBean.vendedor.apellidos}"/>
+                            <p:outputLabel value="DIU"/>
+                            <p:inputText value="#{vendedorBean.vendedor.dui}"/>
+                            <p:outputLabel value="Celular"/>
+                            <p:inputText value="#{vendedorBean.vendedor.celular}"/>
                             <p:outputLabel value="Direccion"/>
                             <p:inputText value="#{vendedorBean.vendedor.direccion}"/>
                         </p:panelGrid>
@@ -86,18 +96,18 @@
                         <p:commandButton value="Cancelar" onclick="PF('dialogModificarVendedor').hide()"/>
                     </p:dialog>
                 </h:form>
-                
+
                 <h:form id="formEliminarVendedor">
                     <p:dialog id="dlgEliminarVendedor" widgetVar="dialogEliminarVendedor" resizable="false" showEffect="shake"
-                        hideEffect="drop" modal="true">
+                              hideEffect="drop" modal="true">
                         <h:outputText value="¿Seguro que desea eliminar este registro?"/>
-                                      <p:commandButton value="Si" actionListener="#{vendedorBean.eliminarVendedor()}"
-                                             update=":formMostrarVendedor:tablaVendedor" 
-                                             oncomplete="PF('dialogEliminarVendedor').hide()"/>
-                            <p:commandButton value="No" onclick="PF('dialogEliminarVendedor').hide()"/>
+                        <p:commandButton value="Si" actionListener="#{vendedorBean.eliminarVendedor()}"
+                                         update=":formMostrarVendedor:tablaVendedor" 
+                                         oncomplete="PF('dialogEliminarVendedor').hide()"/>
+                        <p:commandButton value="No" onclick="PF('dialogEliminarVendedor').hide()"/>
                     </p:dialog>
                 </h:form>
-                
+
             </ui:define>
 
         </ui:composition>
