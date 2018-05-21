@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/05/2018 11:11:34 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 21/05/2018 03:23:44 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.ipn.mx.modelo.entidades.Cliente" table="cliente" catalog="facturacion" optimistic-lock="version">
         <id name="codCliente" type="java.lang.Integer">
@@ -14,8 +14,32 @@
         <property name="apellidos" type="string">
             <column name="apellidos" length="40" not-null="true" />
         </property>
-        <property name="direccion" type="string">
-            <column name="direccion" length="150" />
+        <property name="rfc" type="string">
+            <column name="RFC" length="14" />
+        </property>
+        <property name="calle" type="string">
+            <column name="calle" length="30" not-null="true" />
+        </property>
+        <property name="nexterior" type="string">
+            <column name="nexterior" length="4" not-null="true" />
+        </property>
+        <property name="ninterior" type="string">
+            <column name="ninterior" length="4" />
+        </property>
+        <property name="colonia" type="string">
+            <column name="colonia" length="30" not-null="true" />
+        </property>
+        <property name="munDel" type="string">
+            <column name="mun_del" length="40" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="40" not-null="true" />
+        </property>
+        <property name="cp" type="int">
+            <column name="CP" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
         </property>
         <set name="facturas" table="factura" inverse="true" lazy="true" fetch="select">
             <key>

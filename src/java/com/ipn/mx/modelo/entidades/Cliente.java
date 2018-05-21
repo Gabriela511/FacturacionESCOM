@@ -1,5 +1,5 @@
 package com.ipn.mx.modelo.entidades;
-// Generated 14/05/2018 11:11:32 PM by Hibernate Tools 4.3.1
+// Generated 21/05/2018 03:23:42 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,21 +14,44 @@ public class Cliente  implements java.io.Serializable {
      private Integer codCliente;
      private String nombres;
      private String apellidos;
-     private String direccion;
+     private String rfc;
+     private String calle;
+     private String nexterior;
+     private String ninterior;
+     private String colonia;
+     private String munDel;
+     private String estado;
+     private int cp;
+     private String email;
      private Set<Factura> facturas = new HashSet<Factura>(0);
 
     public Cliente() {
     }
 
 	
-    public Cliente(String nombres, String apellidos) {
+    public Cliente(String nombres, String apellidos, String calle, String nexterior, String colonia, String munDel, String estado, int cp, String email) {
         this.nombres = nombres;
         this.apellidos = apellidos;
+        this.calle = calle;
+        this.nexterior = nexterior;
+        this.colonia = colonia;
+        this.munDel = munDel;
+        this.estado = estado;
+        this.cp = cp;
+        this.email = email;
     }
-    public Cliente(String nombres, String apellidos, String direccion, Set<Factura> facturas) {
+    public Cliente(String nombres, String apellidos, String rfc, String calle, String nexterior, String ninterior, String colonia, String munDel, String estado, int cp, String email, Set<Factura> facturas) {
        this.nombres = nombres;
        this.apellidos = apellidos;
-       this.direccion = direccion;
+       this.rfc = rfc;
+       this.calle = calle;
+       this.nexterior = nexterior;
+       this.ninterior = ninterior;
+       this.colonia = colonia;
+       this.munDel = munDel;
+       this.estado = estado;
+       this.cp = cp;
+       this.email = email;
        this.facturas = facturas;
     }
    
@@ -53,12 +76,68 @@ public class Cliente  implements java.io.Serializable {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-    public String getDireccion() {
-        return this.direccion;
+    public String getRfc() {
+        return this.rfc;
     }
     
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+    public String getCalle() {
+        return this.calle;
+    }
+    
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+    public String getNexterior() {
+        return this.nexterior;
+    }
+    
+    public void setNexterior(String nexterior) {
+        this.nexterior = nexterior;
+    }
+    public String getNinterior() {
+        return this.ninterior;
+    }
+    
+    public void setNinterior(String ninterior) {
+        this.ninterior = ninterior;
+    }
+    public String getColonia() {
+        return this.colonia;
+    }
+    
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
+    }
+    public String getMunDel() {
+        return this.munDel;
+    }
+    
+    public void setMunDel(String munDel) {
+        this.munDel = munDel;
+    }
+    public String getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    public int getCp() {
+        return this.cp;
+    }
+    
+    public void setCp(int cp) {
+        this.cp = cp;
+    }
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
     }
     public Set<Factura> getFacturas() {
         return this.facturas;

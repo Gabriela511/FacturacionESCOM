@@ -1,5 +1,5 @@
 package com.ipn.mx.modelo.entidades;
-// Generated 14/05/2018 11:11:32 PM by Hibernate Tools 4.3.1
+// Generated 21/05/2018 03:23:42 AM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;

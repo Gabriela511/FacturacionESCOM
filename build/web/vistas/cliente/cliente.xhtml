@@ -17,16 +17,21 @@
                 <h:form id="formMostrarCliente">
                     <p:dataTable id="tablaCliente" paginator="true" paginatorPosition="top"
                                  var="ct" value="#{clienteBean.listaClientes}" emptyMessage="No hay datos disponibles">
-                        <p:column headerText="Codigo">
+                        <p:column headerText="#ID">
                             <h:outputText value="#{ct.codCliente}"/>
+                        </p:column>
+                                
+                        <p:column headerText="RFC">
+                            <h:outputText value="#{ct.rfc}"/>
                         </p:column>
                         
                         <p:column headerText="Nombre del cliente">
                             <h:outputText value="#{ct.nombres} #{ct.apellidos}"/>
                         </p:column>
-                        
+
                         <p:column headerText="Direccion">
-                            <h:outputText value="#{ct.direccion}"/>
+                            <h:outputText value="#{ct.calle} #{ct.nexterior} #{ct.ninterior} #{ct.colonia} #{ct.munDel} 
+                                          #{ct.estado} #{ct.cp}"/>
                         </p:column>
                         
                         <p:column headerText="Modificar">
@@ -52,12 +57,28 @@
                     <p:dialog id="dlgNuevoCliente" widgetVar="dialogNuevoCliente" resizable="false" showEffect="blind"
                         hideEffect="clip" modal="true">
                         <p:panelGrid columns="2" style="margin: 0 auto">
+                            <p:outputLabel value="RFC"/>
+                            <p:inputText value="#{clienteBean.cliente.rfc}"/>
                             <p:outputLabel value="Nombres"/>
                             <p:inputText value="#{clienteBean.cliente.nombres}"/>
                             <p:outputLabel value="Apellidos"/>
                             <p:inputText value="#{clienteBean.cliente.apellidos}"/>
-                            <p:outputLabel value="Direccion"/>
-                            <p:inputText value="#{clienteBean.cliente.direccion}"/>
+                            <p:outputLabel value="Calle"/>
+                            <p:inputText value="#{clienteBean.cliente.calle}"/>
+                            <p:outputLabel value="Numero Exterior"/>
+                            <p:inputText value="#{clienteBean.cliente.nexterior}"/>
+                            <p:outputLabel value="Numero Interior"/>
+                            <p:inputText value="#{clienteBean.cliente.ninterior}"/>
+                            <p:outputLabel value="Colonia"/>
+                            <p:inputText value="#{clienteBean.cliente.colonia}"/>
+                            <p:outputLabel value="Municipio/Delegación"/>
+                            <p:inputText value="#{clienteBean.cliente.munDel}"/>
+                            <p:outputLabel value="Estado"/>
+                            <p:inputText value="#{clienteBean.cliente.estado}"/>
+                            <p:outputLabel value="Codigo Postal"/>
+                            <p:inputText value="#{clienteBean.cliente.cp}"/>
+                            <p:outputLabel value="Email"/>
+                            <p:inputText value="#{clienteBean.cliente.email}"/>
                         </p:panelGrid>
                         <p:commandButton value="Guardar" actionListener="#{clienteBean.nuevoCliente()}"
                                          update=":formMostrarCliente:tablaCliente" oncomplete="PF('dialogNuevoCliente').hide()"/>
@@ -69,12 +90,26 @@
                     <p:dialog id="dlgModificarCliente" widgetVar="dialogModificarCliente" resizable="false" showEffect="blind"
                         hideEffect="clip" modal="true">
                         <p:panelGrid columns="2" style="margin: 0 auto">
+                            <p:outputLabel value="RFC"/>
+                            <p:inputText value="#{clienteBean.cliente.rfc}"/>
                             <p:outputLabel value="Nombres"/>
                             <p:inputText value="#{clienteBean.cliente.nombres}"/>
                             <p:outputLabel value="Apellidos"/>
                             <p:inputText value="#{clienteBean.cliente.apellidos}"/>
-                            <p:outputLabel value="Direccion"/>
-                            <p:inputText value="#{clienteBean.cliente.direccion}"/>
+                            <p:outputLabel value="Calle"/>
+                            <p:inputText value="#{clienteBean.cliente.calle}"/>
+                            <p:outputLabel value="Numero Exterior"/>
+                            <p:inputText value="#{clienteBean.cliente.nexterior}"/>
+                            <p:outputLabel value="Numero Interior"/>
+                            <p:inputText value="#{clienteBean.cliente.ninterior}"/>
+                            <p:outputLabel value="Colonia"/>
+                            <p:inputText value="#{clienteBean.cliente.colonia}"/>
+                            <p:outputLabel value="Municipio/Delegación"/>
+                            <p:inputText value="#{clienteBean.cliente.munDel}"/>
+                            <p:outputLabel value="Estado"/>
+                            <p:inputText value="#{clienteBean.cliente.estado}"/>
+                            <p:outputLabel value="Codigo Postal"/>
+                            <p:inputText value="#{clienteBean.cliente.cp}"/>
                         </p:panelGrid>
                         <p:commandButton value="Guardar" actionListener="#{clienteBean.modificarCliente()}"
                                          update=":formMostrarCliente:tablaCliente" oncomplete="PF('dialogModificarCliente').hide()"/>

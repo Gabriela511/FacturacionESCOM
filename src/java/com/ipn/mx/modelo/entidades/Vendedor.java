@@ -1,5 +1,5 @@
 package com.ipn.mx.modelo.entidades;
-// Generated 14/05/2018 11:11:32 PM by Hibernate Tools 4.3.1
+// Generated 21/05/2018 03:23:42 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,9 +14,16 @@ public class Vendedor  implements java.io.Serializable {
      private Integer codVendedor;
      private String nombres;
      private String apellidos;
-     private String dui;
      private String celular;
-     private String direccion;
+     private String calle;
+     private String nexterior;
+     private String ninterior;
+     private String colonia;
+     private String munDel;
+     private String estado;
+     private int cp;
+     private String claveElector;
+     private String email;
      private Set<Factura> facturas = new HashSet<Factura>(0);
      private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 
@@ -24,19 +31,32 @@ public class Vendedor  implements java.io.Serializable {
     }
 
 	
-    public Vendedor(String nombres, String apellidos, String dui, String celular, String direccion) {
+    public Vendedor(String nombres, String apellidos, String celular, String calle, String nexterior, String colonia, String munDel, String estado, int cp, String claveElector, String email) {
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.dui = dui;
         this.celular = celular;
-        this.direccion = direccion;
+        this.calle = calle;
+        this.nexterior = nexterior;
+        this.colonia = colonia;
+        this.munDel = munDel;
+        this.estado = estado;
+        this.cp = cp;
+        this.claveElector = claveElector;
+        this.email = email;
     }
-    public Vendedor(String nombres, String apellidos, String dui, String celular, String direccion, Set<Factura> facturas, Set<Usuario> usuarios) {
+    public Vendedor(String nombres, String apellidos, String celular, String calle, String nexterior, String ninterior, String colonia, String munDel, String estado, int cp, String claveElector, String email, Set<Factura> facturas, Set<Usuario> usuarios) {
        this.nombres = nombres;
        this.apellidos = apellidos;
-       this.dui = dui;
        this.celular = celular;
-       this.direccion = direccion;
+       this.calle = calle;
+       this.nexterior = nexterior;
+       this.ninterior = ninterior;
+       this.colonia = colonia;
+       this.munDel = munDel;
+       this.estado = estado;
+       this.cp = cp;
+       this.claveElector = claveElector;
+       this.email = email;
        this.facturas = facturas;
        this.usuarios = usuarios;
     }
@@ -62,13 +82,6 @@ public class Vendedor  implements java.io.Serializable {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-    public String getDui() {
-        return this.dui;
-    }
-    
-    public void setDui(String dui) {
-        this.dui = dui;
-    }
     public String getCelular() {
         return this.celular;
     }
@@ -76,12 +89,68 @@ public class Vendedor  implements java.io.Serializable {
     public void setCelular(String celular) {
         this.celular = celular;
     }
-    public String getDireccion() {
-        return this.direccion;
+    public String getCalle() {
+        return this.calle;
     }
     
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+    public String getNexterior() {
+        return this.nexterior;
+    }
+    
+    public void setNexterior(String nexterior) {
+        this.nexterior = nexterior;
+    }
+    public String getNinterior() {
+        return this.ninterior;
+    }
+    
+    public void setNinterior(String ninterior) {
+        this.ninterior = ninterior;
+    }
+    public String getColonia() {
+        return this.colonia;
+    }
+    
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
+    }
+    public String getMunDel() {
+        return this.munDel;
+    }
+    
+    public void setMunDel(String munDel) {
+        this.munDel = munDel;
+    }
+    public String getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    public int getCp() {
+        return this.cp;
+    }
+    
+    public void setCp(int cp) {
+        this.cp = cp;
+    }
+    public String getClaveElector() {
+        return this.claveElector;
+    }
+    
+    public void setClaveElector(String claveElector) {
+        this.claveElector = claveElector;
+    }
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
     }
     public Set<Factura> getFacturas() {
         return this.facturas;

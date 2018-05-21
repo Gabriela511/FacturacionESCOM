@@ -18,7 +18,7 @@
                 <h:form id="formMostrarVendedor">
                     <p:dataTable id="tablaVendedor" paginator="true" paginatorPosition="top"
                                  var="ven" value="#{vendedorBean.listaVendedor}" emptyMessage="No hay datos disponibles">
-                        <p:column headerText="Codigo">
+                        <p:column headerText="#Vendedor">
                             <h:outputText value="#{ven.codVendedor}"/>
                         </p:column>
 
@@ -26,16 +26,17 @@
                             <h:outputText value="#{ven.nombres} #{ven.apellidos}"/>
                         </p:column>
 
-                        <p:column headerText="DUI">
-                            <h:outputText value="#{ven.dui}"/>
+                        <p:column headerText="INE">
+                            <h:outputText value="#{ven.claveElector}"/>
                         </p:column>
-                        
-                        <p:column headerText="Celular">
-                            <h:outputText value="#{ven.celular}"/>
+
+                        <p:column headerText="Contacto">
+                            <h:outputText value=" #{ven.celular}  ||  #{ven.email}"/>
                         </p:column>
 
                         <p:column headerText="Direccion">
-                            <h:outputText value="#{ven.direccion}"/>
+                            <h:outputText value="#{ven.calle} #{ven.nexterior} #{ven.ninterior} #{ven.colonia} #{ven.munDel} 
+                                          #{ven.estado} #{ven.cp}"/>
                         </p:column>
 
                         <p:column headerText="Modificar">
@@ -65,10 +66,26 @@
                             <p:inputText value="#{vendedorBean.vendedor.nombres}"/>
                             <p:outputLabel value="Apellidos"/>
                             <p:inputText value="#{vendedorBean.vendedor.apellidos}"/>
-                            <p:outputLabel value="DUI"/>
-                            <p:inputText value="#{vendedorBean.vendedor.dui}"/>
-                            <p:outputLabel value="Direccion"/>
-                            <p:inputText value="#{vendedorBean.vendedor.direccion}"/>
+                            <p:outputLabel value="Clave Elector"/>
+                            <p:inputText value="#{vendedorBean.vendedor.claveElector}"/>
+                            <p:outputLabel value="Celular"/>
+                            <p:inputText value="#{vendedorBean.vendedor.celular}"/>
+                            <p:outputLabel value="Email"/>
+                            <p:inputText value="#{vendedorBean.vendedor.email}"/>
+                            <p:outputLabel value="Calle"/>
+                            <p:inputText value="#{vendedorBean.vendedor.calle}"/>
+                            <p:outputLabel value="Numero Exterior"/>
+                            <p:inputText value="#{vendedorBean.vendedor.nexterior}"/>
+                            <p:outputLabel value="Numero Interior"/>
+                            <p:inputText value="#{vendedorBean.vendedor.ninterior}"/>
+                            <p:outputLabel value="Colonia"/>
+                            <p:inputText value="#{vendedorBean.vendedor.colonia}"/>
+                            <p:outputLabel value="Municipio/Delegación"/>
+                            <p:inputText value="#{vendedorBean.vendedor.munDel}"/>
+                            <p:outputLabel value="Estado"/>
+                            <p:inputText value="#{vendedorBean.vendedor.estado}"/>
+                            <p:outputLabel value="Codigo Postal"/>
+                            <p:inputText value="#{vendedorBean.vendedor.cp}"/>
                         </p:panelGrid>
                         <p:commandButton value="Guardar" actionListener="#{vendedorBean.nuevoVendedor()}"
                                          update=":formMostrarVendedor:tablaVendedor" oncomplete="PF('dialogNuevoVendedor').hide()"/>
@@ -84,12 +101,26 @@
                             <p:inputText value="#{vendedorBean.vendedor.nombres}"/>
                             <p:outputLabel value="Apellidos"/>
                             <p:inputText value="#{vendedorBean.vendedor.apellidos}"/>
-                            <p:outputLabel value="DIU"/>
-                            <p:inputText value="#{vendedorBean.vendedor.dui}"/>
+                            <p:outputLabel value="Clave Elector"/>
+                            <p:inputText value="#{vendedorBean.vendedor.claveElector}"/>
                             <p:outputLabel value="Celular"/>
                             <p:inputText value="#{vendedorBean.vendedor.celular}"/>
-                            <p:outputLabel value="Direccion"/>
-                            <p:inputText value="#{vendedorBean.vendedor.direccion}"/>
+                            <p:outputLabel value="Email"/>
+                            <p:inputText value="#{vendedorBean.vendedor.email}"/>
+                            <p:outputLabel value="Calle"/>
+                            <p:inputText value="#{vendedorBean.vendedor.calle}"/>
+                            <p:outputLabel value="Numero Exterior"/>
+                            <p:inputText value="#{vendedorBean.vendedor.nexterior}"/>
+                            <p:outputLabel value="Numero Interior"/>
+                            <p:inputText value="#{vendedorBean.vendedor.ninterior}"/>
+                            <p:outputLabel value="Colonia"/>
+                            <p:inputText value="#{vendedorBean.vendedor.colonia}"/>
+                            <p:outputLabel value="Municipio/Delegación"/>
+                            <p:inputText value="#{vendedorBean.vendedor.munDel}"/>
+                            <p:outputLabel value="Estado"/>
+                            <p:inputText value="#{vendedorBean.vendedor.estado}"/>
+                            <p:outputLabel value="Codigo Postal"/>
+                            <p:inputText value="#{vendedorBean.vendedor.cp}"/>
                         </p:panelGrid>
                         <p:commandButton value="Guardar" actionListener="#{vendedorBean.modificarVendedor()}"
                                          update=":formMostrarVendedor:tablaVendedor" oncomplete="PF('dialogModificarVendedor').hide()"/>
