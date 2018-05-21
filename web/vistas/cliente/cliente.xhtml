@@ -10,7 +10,7 @@
 
         <ui:composition template="./../../plantilla/plantilla.xhtml">
             <ui:define name="content">
-                <h1> Datos de clientes </h1>
+                <h2> Datos de clientes </h2>
                 <p:commandButton value="Nuevo Cliente" actionListener="#{clienteBean.prepararNuevoCliente()}"
                                  oncomplete="PF('dialogNuevoCliente').show()"
                                  update="formNuevoCliente"/>
