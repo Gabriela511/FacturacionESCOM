@@ -8,13 +8,15 @@ package com.ipn.mx.modelo.dao;
 import com.ipn.mx.modelo.entidades.Cliente;
 import com.ipn.mx.utilerias.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 
 /**
- *
- * @author darka
+
+ * @author Gabriela A. Perez 
+ * @author Manuel Sandoval Arreola 
  */
 public class clienteDAOImp implements clienteDAO{
 
@@ -88,6 +90,14 @@ public class clienteDAOImp implements clienteDAO{
             }
         }
         
+    }
+    
+    @Override
+    public Cliente obtenerClientePorID(Session session, Integer codCliente){
+        String hql = "FROM Cliente WHERE codCliente = :codCliente";
+        Query q = session.createQuery(hql);
+        q.setParameter("codCliente", codCliente);
+        return (Cliente) q.uniqueResult();
     }
     
 }

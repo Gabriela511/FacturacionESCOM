@@ -7,6 +7,7 @@ package com.ipn.mx.modelo.dao;
 
 import com.ipn.mx.modelo.entidades.Cliente;
 import java.util.List;
+import org.hibernate.Session;
 
 /**
  *
@@ -17,4 +18,7 @@ public interface clienteDAO {
     public void newCliente(Cliente cliente);
     public void updateCliente(Cliente cliente);
     public void deleteCliente(Cliente cliente);
+    
+    //facturaBean
+    public Cliente obtenerClientePorID(Session session, Integer codCliente) throws Exception;
 }
