@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
+<!-- NOTA: Vendedor y cliente tienen la misma estructura, por lo que me ahorro unos cuantos comentarios aqui :) -->
         <ui:composition template="./../../plantilla/plantilla.xhtml">
 
             <ui:define name="content">
@@ -71,6 +71,7 @@
                             <p:outputLabel value="Celular"/>
                             <p:inputText value="#{vendedorBean.vendedor.celular}"/>
                             <p:outputLabel value="Email"/>
+                            <!-- Validación del email -->
                             <p:inputText value="#{vendedorBean.vendedor.email}"/>
                             <p:outputLabel value="Calle"/>
                             <p:inputText value="#{vendedorBean.vendedor.calle}"/>
@@ -81,6 +82,7 @@
                             <p:outputLabel value="Colonia"/>
                             <p:inputText value="#{vendedorBean.vendedor.colonia}"/>
                             <p:outputLabel value="Municipio/Delegación"/>
+                            <!-- Aqui meter COMBOBOX con los datos de la BD de SEPOMEX -->
                             <p:inputText value="#{vendedorBean.vendedor.munDel}"/>
                             <p:outputLabel value="Estado"/>
                             <p:inputText value="#{vendedorBean.vendedor.estado}"/>

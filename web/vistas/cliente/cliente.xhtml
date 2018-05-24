@@ -11,9 +11,11 @@
         <ui:composition template="./../../plantilla/plantilla.xhtml">
             <ui:define name="content">
                 <h2> Datos de clientes </h2>
+                <!-- Inserta un nuevo cliente, manda a llamar un dialog para llenar formulario -->
                 <p:commandButton value="Nuevo Cliente" actionListener="#{clienteBean.prepararNuevoCliente()}"
                                  oncomplete="PF('dialogNuevoCliente').show()"
                                  update="formNuevoCliente"/>
+                <!-- formulario donde se ven los datos de los clientes existentes -->
                 <h:form id="formMostrarCliente">
                     <p:dataTable id="tablaCliente" paginator="true" paginatorPosition="top"
                                  var="ct" value="#{clienteBean.listaClientes}" emptyMessage="No hay datos disponibles">
@@ -33,7 +35,7 @@
                             <h:outputText value="#{ct.calle} #{ct.nexterior} #{ct.ninterior} #{ct.colonia} #{ct.munDel} 
                                           #{ct.estado} #{ct.cp}"/>
                         </p:column>
-                        
+                        <!-- boton para modificar algun cliente -->
                         <p:column headerText="Modificar">
                             <p:commandButton value="Modificar" oncomplete="PF('dialogModificarCliente').show()"
                                 update=":formModificarCliente">
@@ -41,7 +43,7 @@
                             </p:commandButton>
                             
                         </p:column>
-                        
+                        <!-- boton para eliminar algun cliente -->
                         <p:column headerText="Eliminar">
                             <p:commandButton value="Eliminar" oncomplete="PF('dialogEliminarCliente').show()"
                                              update=':formEliminarCliente'>
@@ -49,11 +51,12 @@
                                 
                             </p:commandButton>
                         </p:column>
-                        
                     </p:dataTable>
                 </h:form>
                 
+                <!-- formulario para nuevos clientes-->
                 <h:form id="formNuevoCliente">
+                    <!-- dialogo con formulario para nuevo cliente-->
                     <p:dialog id="dlgNuevoCliente" widgetVar="dialogNuevoCliente" resizable="false" showEffect="blind"
                         hideEffect="clip" modal="true">
                         <p:panelGrid columns="2" style="margin: 0 auto">
@@ -72,12 +75,14 @@
                             <p:outputLabel value="Colonia"/>
                             <p:inputText value="#{clienteBean.cliente.colonia}"/>
                             <p:outputLabel value="Municipio/Delegación"/>
+                            <!-- Aqui meter COMBOBOX con los datos de la BD de SEPOMEX -->
                             <p:inputText value="#{clienteBean.cliente.munDel}"/>
                             <p:outputLabel value="Estado"/>
                             <p:inputText value="#{clienteBean.cliente.estado}"/>
                             <p:outputLabel value="Codigo Postal"/>
                             <p:inputText value="#{clienteBean.cliente.cp}"/>
                             <p:outputLabel value="Email"/>
+                            <!-- Validación si mail esta correcto -->
                             <p:inputText value="#{clienteBean.cliente.email}"/>
                         </p:panelGrid>
                         <p:commandButton value="Guardar" actionListener="#{clienteBean.nuevoCliente()}"
@@ -85,7 +90,7 @@
                         <p:commandButton value="Cancelar" oncomplete="PF('dialogNuevoCliente').hide()"/>
                     </p:dialog>
                 </h:form>
-                
+                <!-- dialog con los datos de los clientes y la posibilidad de modificarlos-->
                 <h:form id="formModificarCliente">
                     <p:dialog id="dlgModificarCliente" widgetVar="dialogModificarCliente" resizable="false" showEffect="blind"
                         hideEffect="clip" modal="true">
@@ -116,7 +121,7 @@
                         <p:commandButton value="Cancelar" onclick="PF('dialogModificarCliente').hide()"/>
                     </p:dialog>
                 </h:form>
-                
+                <!-- nota de confirmación para la eliminación de un cliente -->
                 <h:form id="formEliminarCliente">
                     <p:dialog id="dlgEliminarCliente" widgetVar="dialogEliminarCliente" resizable="false" showEffect="shake"
                         hideEffect="drop" modal="true">
