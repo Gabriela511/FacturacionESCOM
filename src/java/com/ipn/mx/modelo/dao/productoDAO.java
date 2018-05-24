@@ -7,6 +7,7 @@ package com.ipn.mx.modelo.dao;
 
 import com.ipn.mx.modelo.entidades.Producto;
 import java.util.List;
+import org.hibernate.Session;
 
 /**
  *
@@ -17,4 +18,7 @@ public interface productoDAO {
     public void newProducto(Producto producto);
     public void updateProducto(Producto producto);
     public void deleteProducto(Producto producto);
+    
+    /* Metodos para FACTURA */
+    public Producto obtenerProductoPorCodBarra(Session session, String codBarra) throws Exception;
 }

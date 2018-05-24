@@ -8,6 +8,7 @@ package com.ipn.mx.modelo.dao;
 import com.ipn.mx.modelo.entidades.Producto;
 import com.ipn.mx.utilerias.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -86,5 +87,14 @@ public class productoDAOImp implements productoDAO{
             }
         }
         
+    }
+    
+    @Override
+    public Producto obtenerProductoPorCodBarra(Session session, String codBarra) throws Exception{
+        String hql = "FROM Producto WHERE codBarra = :codBarra";
+        Query q = session.createQuery(hql);
+        q.setParameter("codBarra", codBarra);
+        
+        return (Producto) q.uniqueResult();
     }
 }
