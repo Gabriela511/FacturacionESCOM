@@ -11,6 +11,7 @@ import com.ipn.mx.modelo.dao.productoDAO;
 import com.ipn.mx.modelo.dao.productoDAOImp;
 import com.ipn.mx.modelo.entidades.Cliente;
 import com.ipn.mx.modelo.entidades.Detallefactura;
+import com.ipn.mx.modelo.entidades.Factura;
 import com.ipn.mx.modelo.entidades.Producto;
 import com.ipn.mx.utilerias.HibernateUtil;
 import java.math.BigDecimal;
@@ -41,8 +42,13 @@ public class facturaBean{
     private String codigoBarra;
 
     private List<Detallefactura> listaDetalleFactura;
+    
+    private Integer cantidadProducto;
+    private String productoSeleccionado;
+    private Factura factura;
 
     public facturaBean() {
+        this.factura = new Factura();
         this.listaDetalleFactura = new ArrayList<>();
     }
 
@@ -85,6 +91,33 @@ public class facturaBean{
     public void setListaDetalleFactura(List<Detallefactura> listaDetalleFactura) {
         this.listaDetalleFactura = listaDetalleFactura;
     }
+
+    public Integer getCantidadProducto() {
+        return cantidadProducto;
+    }
+
+    public void setCantidadProducto(Integer cantidadProducto) {
+        this.cantidadProducto = cantidadProducto;
+    }
+
+    public String getProductoSeleccionado() {
+        return productoSeleccionado;
+    }
+
+    public void setProductoSeleccionado(String productoSeleccionado) {
+        this.productoSeleccionado = productoSeleccionado;
+    }
+
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+    
+    
+    
 
     //Agrega datos del cliente por dialogCliente
     public void agregarDatosCliente(int codCliente) {
@@ -143,8 +176,13 @@ public class facturaBean{
         }
     }
 
+    //Solicita cantidad de producto a vender
+    public void pedirCantidadProducto(String codBarra){
+        this.productoSeleccionado = codBarra;
+    }
+    
     //Agrega datos de producto al dialogProductos
-    public void agregarDatosProducto(String codBarra) {
+    public void agregarDatosProducto() {
         this.session = null;
         this.transaction = null;
         try {
@@ -152,11 +190,15 @@ public class facturaBean{
             productoDAO pdao = new productoDAOImp();
             this.transaction = this.session.beginTransaction();
             //Obtiene datos y posteriormente los agrega a la lista
-            this.producto = pdao.obtenerProductoPorCodBarra(this.session, codBarra);
+            this.producto = pdao.obtenerProductoPorCodBarra(this.session, this.productoSeleccionado);
 
-            this.listaDetalleFactura.add(new Detallefactura(null, null, this.producto.getCodBarra(), this.producto.getNombreProducto(), 0, this.producto.getPrecioVenta(), new BigDecimal(0)));
+            this.listaDetalleFactura.add(new Detallefactura(null, null, this.producto.getCodBarra(), this.producto.getNombreProducto(), this.cantidadProducto, this.producto.getPrecioVenta(), 
+                    BigDecimal.valueOf(this.cantidadProducto.floatValue()*this.producto.getPrecioVenta().floatValue())));
             this.transaction.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Producto agregado."));
+            //calcular total de la factura
+            this.totalFacturaVenta();
+            this.cantidadProducto = null;
         } catch (Exception e) {
             if (this.transaction != null) {
                 System.out.println(e.getMessage());
@@ -203,6 +245,22 @@ public class facturaBean{
             if (this.session != null) {
                 this.session.close();
             }
+        }
+    }
+
+    //calcula total a vender
+    public void totalFacturaVenta(){
+        BigDecimal totalFacturaVenta = new BigDecimal("0");
+        try{
+            for(Detallefactura item : listaDetalleFactura){
+                BigDecimal totalVentaPorProducto = item.getPrecioVenta().multiply(new BigDecimal(item.getCantidad()));
+                item.setTotal(totalVentaPorProducto);
+                totalFacturaVenta = totalFacturaVenta.add(totalVentaPorProducto);
+            }
+            this.factura.setTotalVenta(totalFacturaVenta);
+            
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 }

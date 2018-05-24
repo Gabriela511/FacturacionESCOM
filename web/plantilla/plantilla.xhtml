@@ -17,40 +17,29 @@
                 <ui:insert name="top"></ui:insert>
                 <h1>Facturación ESCOM </h1>
                 <div id="menuPrincipal">
-                    <h:form>  
-                        <p:menubar>
-                            <p:submenu label="Inicio" icon="ui-icon-home">
-                                <p:menuitem value="Pagina Inicio" outcome="/vistas/bienvenido" />
-                                <p:separator />
-                                <p:menuitem value="Salir" url="#" />
-                            </p:submenu>
 
-                            <p:submenu label="Cliente" icon="ui-icon-pencil">
-                                <p:menuitem value="Ver y Editar" outcome="/vistas/cliente/cliente" icon="ui-icon-arrowreturnthick-1-w" />
-                            </p:submenu>
-
-                            <p:submenu label="Vendedor" icon="ui-icon-pencil">
-                                <p:menuitem value="Ver y Editar" outcome="/vistas/vendedor/vendedor" />
-                            </p:submenu>
-
-                            <p:submenu label="Producto" icon="ui-icon-pencil">
-                                <p:menuitem value="Ver y Editar" outcome="/vistas/producto/producto" />
-                            </p:submenu>
-                            <p:submenu label="Venta" icon="ui-icon-document">
-                                <p:menuitem value="Facturar" outcome="/vistas/venta/factura" />
-                            </p:submenu>
-                        </p:menubar>
-                    </h:form>
                 </div>
             </div>
 
             <div id="content" class="center_content">
                 <ui:insert name="content">Content</ui:insert>
+                <h:form>
+                    <p:stack  icon="/resources/imagenes/caja.png" expanded="true">
+                        <p:menuitem value="Bienvenido" outcome="/vistas/bienvenido" icon="/resources/imagenes/inicio.png"/>
+                        <p:menuitem value="Cliente" outcome="/vistas/cliente/cliente" icon="/resources/imagenes/cliente.png"/>
+                        <p:menuitem value="Vendedor" outcome="/vistas/vendedor/vendedor" icon="/resources/imagenes/vendedor.png"/>
+                        <p:menuitem value="Producto" outcome="/vistas/producto/producto" icon="/resources/imagenes/producto.png"/>
+                        <p:menuitem value="Factura" outcome="/vistas/venta/factura" icon="/resources/imagenes/factura.png"/>
+                    </p:stack>
+                </h:form>
+
+
             </div>
 
             <div id="bottom">
                 <ui:insert name="bottom">Web Application 2018 &copy; Sistema de Facturacion ESCOM</ui:insert>
             </div>
         </div>
+
     </h:body>
 </html>
